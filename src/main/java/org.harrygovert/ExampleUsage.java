@@ -10,15 +10,17 @@ public class ExampleUsage {
 
     private static void jumboMain() {
         JumboConnector connector = new JumboConnector();
-        System.out.println(connector.getProductByBarcode("8720181027758"));
-        var spec = JumboSearchSpecification.builder().query("Brood").size(20).build();
+        var barcodeResult = connector.getProductByBarcode("8720181027758");
+        System.out.println(barcodeResult);
+        var spec = JumboSearchSpecification.builder().query(barcodeResult.getTitle()).size(20).build();
         System.out.println(connector.searchProducts(spec));
         System.out.println(connector.searchAllProducts(spec));
-        System.out.println(connector.getCategories());
-        System.out.println(connector.getSubCategories("SG1"));
+        var categories = connector.getCategories();
+        System.out.println(categories);
+        System.out.println(connector.getSubCategories(categories.get(0).getId()));
         // Never works
         try {
-            System.out.println(connector.getProductDetails("404627BUS"));
+            System.out.println(connector.getProductDetails(barcodeResult.getId()));
         } catch (ApiException e) {
             System.out.println(e.getError());
         }
@@ -26,13 +28,15 @@ public class ExampleUsage {
 
     private static void ahMain() {
         AHConnector connector = new AHConnector();
-        System.out.println(connector.getProductByBarcode("8410031965902"));
-        AHSearchSpecification spec = AHSearchSpecification.builder().query("z").build();
+        var barcodeResult = connector.getProductByBarcode("8410031965902");
+        System.out.println(barcodeResult);
+        var spec = AHSearchSpecification.builder().query(barcodeResult.getTitle()).build();
         System.out.println(connector.searchProducts(spec));
         System.out.println(connector.searchAllProducts(spec));
-        System.out.println(connector.getCategories());
-        System.out.println(connector.getSubCategories("6401"));
-        System.out.println(connector.getProductDetails("197393"));
+        var categories = connector.getCategories();
+        System.out.println(categories);
+        System.out.println(connector.getSubCategories(categories.get(0).getId() + ""));
+        System.out.println(connector.getProductDetails(barcodeResult.getWebshopId() + ""));
     }
 
     public static void main(String[] args) {

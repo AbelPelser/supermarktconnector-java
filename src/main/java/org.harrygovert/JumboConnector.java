@@ -19,7 +19,7 @@ import org.harrygovert.model.jumbo.JumboSearchResult;
 
 public class JumboConnector extends AbstractConnector {
 
-    private static final String JUMBO_BASE_API_URL = "https://mobileapi.jumbo.com/v14";
+    private static final String JUMBO_BASE_API_URL = "https://mobileapi.jumbo.com/v9";
     private static final String JUMBO_SEARCH_API_URL = JUMBO_BASE_API_URL + "/search";
     private static final String JUMBO_CATEGORY_API_URL = JUMBO_BASE_API_URL + "/categories";
 
