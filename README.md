@@ -2,7 +2,6 @@ A Java port of https://github.com/bartmachielsen/SupermarktConnector
 
 Intended to be used as a library. In order to do so, run `mvn clean install` from the repository root, and then include
 in your project's pom:
-
 ```xml
 
 <dependencies>
